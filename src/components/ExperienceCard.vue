@@ -12,7 +12,6 @@ const locations = computed(() => dades);
 
 
 const currentDestination = computed(() =>
-  //locations.value.destinations.find(dest => dest.id === props.destinationId)
   locations.value.destinations.find(dest => dest.id === props.destinationId)
 );
 
@@ -27,7 +26,8 @@ const experiences = computed(() => {
     <p>ID que rep: {{ destinationId }}</p>
     <div v-for="experience in experiences" :key="experience.slug">
       <p>{{ experience.name }}</p>
+      <p>{{ experience.description }}</p>
+      <img :src="`../img/${experience.image}`" width="60" alt="">
     </div>
-    <!-- <p>Destination ID: {{ experiences[destinationId] }}</p> -->
   </div>
 </template>
