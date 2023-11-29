@@ -13,23 +13,16 @@ const router = createRouter({
       path: "/destination/:id",
       name: "destination.show",
       component: () => import('@/views/DestinationShow.vue'),
-      props: route => ({...route.params, id: parseInt(route.params.id as string)}),
-    },
-    // {
-    //   path: "/destination/:id/:slug",
-    //   name: "destination.show",
-    //   component: ()=>import('@/views/DestinationShow.vue'),
-    //   props: route=>({...route.params, id:parseInt(route.params.id as string)}),
-
-    //   children: [
-    //     {
-    //       path: "experienceSlug",
-    //       name: "experience.show",
-    //       component: ()=>import('@/views/ExperienceShow.vue'),
-    //       props: route=>({...route.params, slug: parseInt(route.params.slug)})
-    //     }
-    //   ]
-    // }
+      props: route => ({ ...route.params, id: parseInt(route.params.id as string) }),
+      children: [
+        {
+          path: ":slug",
+          name: "experience.show",
+          component: () => import('@/views/ExperienceShow.vue'),
+          props: route => ({ ...route.params, slug: parseInt(route.params.slug as string) })
+        }
+      ]
+    }
   ]
 })
 
