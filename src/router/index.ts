@@ -19,7 +19,7 @@ const router = createRouter({
           path: ":slug",
           name: "experience.show",
           component: () => import('@/views/ExperienceShow.vue'),
-          props: route => ({ ...route.params, slug: parseInt(route.params.slug as string) })
+          props: route => ({ ...route.params, slug: route.params.slug })
         }
       ]
     }

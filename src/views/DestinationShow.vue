@@ -6,8 +6,8 @@ const locations = reactive(dades)
 
 const props = defineProps(['id'])
 
-const destination = computed(()=>
-    dades.destinations.find((dest)=> dest.id === props.id)
+const destination = computed(() =>
+    dades.destinations.find((dest) => dest.id === props.id)
 )
 
 
@@ -26,30 +26,17 @@ const destination = computed(()=>
 
 
 
-  <!-- <section v-if="destination" id="top-experiences">
-    <h2>Top experiences in {{ destination.name }}</h2>
-    <template v-for="experience in destination.experiences" :key="experience.slug">
-      <RouterLink :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }">
-        <ExperienceCard :destinationId="destination.id" />
-        <h2>{{ experience.name }}</h2>
-      </RouterLink>
-    </template>
-  </section> -->
-
-
-
-
-    <section v-if="destination" id="top-experiences">
-        <!-- <h2>Top experiences in {{ destination.name }}</h2>
-        <ExperienceCard :destinationId="destination.id" />
+    <h1>Top experiences in {{ destination?.name }}</h1>
+    <section class="container-experiences" v-if="destination">
         <RouterLink v-for="experience in destination.experiences" :key="experience.slug"
-            :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }">
-            <h2>{{ locations.destinations[props.id].experiences }}</h2>
-        </RouterLink> -->
+            :to="{ name: 'experience.show', params: { slug: experience.slug } }">
+            <div class="experience-container">
+                <img :src="`../img/${experience.image}`" width="60" class="img-experience" alt="">
+                <p class="experience-name">{{ experience.name }}</p>
+            </div>
+        </RouterLink>
     </section>
-        <!-- Fer routerlink v-for embolicant aquest experience card passant un argument per paràmetre -->
-        <ExperienceCard :destinationId="destination?.id" />
-
+    <RouterView></RouterView>
 </template>
 
 
@@ -64,10 +51,11 @@ h1 {
     padding-left: 5%;
 }
 
-.container-info-destination {
+.container-info-destination, .container-experiences {
     display: flex;
     margin: 0 auto;
     width: 90%;
+    margin-bottom: 100px;
 }
 
 .destination-img {
@@ -80,5 +68,21 @@ h1 {
 
 .destination-info p {
     padding: 50px;
+}
+
+.experience-container {
+    width: 75%;
+}
+
+.img-experience {
+    max-width: 100%;
+    height: 200px;
+    display: block;
+}
+
+.experience-name {
+    background-color: #2C3E50;
+    color: white;
+    text-decoration: none;
 }
 </style>

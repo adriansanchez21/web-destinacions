@@ -4,7 +4,7 @@
             <RouterLink to="/"><h2>Home</h2></RouterLink>
             <RouterLink v-for="location in locations" :key="location.id"
                 :to="{ name: 'destination.show', params: { id: location.id } }">
-                <h2>{{ location.name }}{{ location.id }}</h2>
+                <h2>{{ location.name }}</h2>
             </RouterLink>
         </ul>
     </nav>
